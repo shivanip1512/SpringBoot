@@ -1,8 +1,6 @@
 package com.shivani.springboot.jpa;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -46,11 +44,23 @@ public class SpringBootJpaApplication {
 		 * 
 		 * User updatedUser = userRepo.save(user2); System.out.println(updatedUser);
 		 */
+
+		/*
+		 * //delete userRepo.deleteById(3);
+		 */
+
 		
 		/*
-		 * //delete 
-		 * userRepo.deleteById(3);
+		 * //custom finder
+		 * List<User> list = userRepo.findByName("Shivani");
+		 * 
+		 * for (User user : list) { System.out.println(user); }
 		 */
+		
+		List<User> allUsers = userRepo.getAllUsers();
+		
+		for (User user : allUsers) {
+			System.out.println(user);
+		}
 	}
-
 }
