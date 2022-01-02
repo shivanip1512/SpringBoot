@@ -57,10 +57,24 @@ public class SpringBootJpaApplication {
 		 * for (User user : list) { System.out.println(user); }
 		 */
 		
-		List<User> allUsers = userRepo.getAllUsers();
+		/*
+		 * List<User> allUsers = userRepo.getAllUsers();
+		 * 
+		 * for (User user : allUsers) { System.out.println(user); }
+		 */
 		
-		for (User user : allUsers) {
-			System.out.println(user);
-		}
+		/*
+		 * List<User> userByStatus = userRepo.getUserByName("Shivani");
+		 * 
+		 * for (User user : userByStatus) { System.out.println(user); }
+		 */
+	
+		//native query
+		List<User> users = userRepo.getUsers();
+		
+		users.forEach(u->{
+			System.out.println(u);
+		});
+	
 	}
 }
