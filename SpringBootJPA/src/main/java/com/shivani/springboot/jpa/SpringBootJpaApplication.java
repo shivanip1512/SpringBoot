@@ -69,7 +69,7 @@ public class SpringBootJpaApplication {
 		 * for (User user : userByStatus) { System.out.println(user); }
 		 */
 	
-		//native query
+		//native query 
 		List<User> users = userRepo.getUsers();
 		
 		users.forEach(u->{
