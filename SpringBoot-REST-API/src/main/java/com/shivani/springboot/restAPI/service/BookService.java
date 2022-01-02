@@ -13,4 +13,10 @@ public interface BookService {
 
 	Book getBookById(int id);
 
+	void createBook(Book book);
+
+	Book deleteById(int id);
+
+	void updateBook(Book book, int id);
+
 }
