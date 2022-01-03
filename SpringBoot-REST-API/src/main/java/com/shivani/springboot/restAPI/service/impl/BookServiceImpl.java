@@ -2,6 +2,7 @@ package com.shivani.springboot.restAPI.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -31,7 +32,13 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public Book getBookById(int id) {
-		Book book = list.stream().filter(e -> e.getId() == id).findFirst().get();
+
+		Book book = null;
+		try {
+			book = list.stream().filter(e -> e.getId() == id).findFirst().get();
+		} catch (NoSuchElementException e) {
+			e.getMessage();
+		}
 		return book;
 	}
 
@@ -44,15 +51,18 @@ public class BookServiceImpl implements BookService {
 	public Book deleteById(int id) {
 		Book bookById = this.getBookById(id);
 		// list.remove(bookById);
-		list = list.stream().filter(book -> book.getId() != id).collect(Collectors.toList());
+		try {
+			list = list.stream().filter(book -> book.getId() != id).collect(Collectors.toList());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return bookById;
 	}
 
-
 	@Override
 	public void updateBook(Book book, int id) {
-		list = list.stream().map(b->{
-			if(b.getId()==id) {
+		list = list.stream().map(b -> {
+			if (b.getId() == id) {
 				b.setAuthor(book.getAuthor());
 				b.setTitle(book.getTitle());
 				b.setPrice(book.getPrice());
