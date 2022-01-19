@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Example for Loop</title>
+</head>
+<body>
+	
+	<h1>Traversing elements in collection</h1>
+	
+	<h3 th:text=${friends}>
+	</h3>
+	
+	<ul>
+	<li th:each="f,status : ${friends}">
+	<span th:style="${status.odd}?'color: blue':'color: violet'" th:text="${f} + ', '+${status.index}"></span>
+	</li>
+	</ul>
+	
+</body>
+</html>
