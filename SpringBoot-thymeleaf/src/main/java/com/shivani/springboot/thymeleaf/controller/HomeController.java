@@ -12,19 +12,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HomeController {
 
-	@RequestMapping(value =  "/",method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
 		System.out.println("inside home handler");
-		model.addAttribute("name","Shivani");
-		model.addAttribute("currentDate",new Date().toString());
+		model.addAttribute("name", "Shivani");
+		model.addAttribute("currentDate", new Date().toString());
 		return "home";
 	}
 
 	@GetMapping(value = "/iterator")
 	public String iterateHandler(Model model) {
-		List<String> friends = List.of("Shivani","Sweety","Kirti");
-		model.addAttribute("friends",friends);
+		List<String> friends = List.of("Shivani", "Sweety", "Kirti");
+		model.addAttribute("friends", friends);
 		return "iterate";
 	}
-	
+
+	@GetMapping("/condition")
+	public String conditionHandler(Model model) {
+		model.addAttribute("isActive", false);
+		model.addAttribute("gender", "M");
+
+		List<Integer> list = List.of(1, 2, 3, 4);
+		model.addAttribute("mylist", list);
+		return "conditional";
+	}
+
 }
