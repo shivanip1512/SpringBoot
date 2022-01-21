@@ -12,8 +12,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class HomeController {
+	
+	@GetMapping("/")
+	public String baseHandler() {
+		return "profile";
+	}
+	
+	@GetMapping("/contact")
+	public String contactHandler() {
+		return "contact";
+	}
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(Model model) {
 		System.out.println("inside home handler");
 		model.addAttribute("name", "Shivani");
