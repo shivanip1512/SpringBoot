@@ -1,5 +1,6 @@
 package com.shivani.springboot.thymeleaf.controller;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -35,6 +36,13 @@ public class HomeController {
 		List<Integer> list = List.of(1, 2, 3, 4);
 		model.addAttribute("mylist", list);
 		return "conditional";
+	}
+
+	@GetMapping("/service")
+	public String serviceHandler(Model model) {
+		model.addAttribute("msg1", "This is Message1 from Controller");
+		model.addAttribute("date", LocalDateTime.now());
+		return "service";
 	}
 
 }
