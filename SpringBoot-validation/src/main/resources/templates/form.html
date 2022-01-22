@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8" />
+<title>Login</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+</head>
+<body>
+
+	<div class="container">
+		<div class="row mt-5">
+			<div class="col-md-6 offset-md-3">
+				<h2 class="text-center">Login here</h2>
+				<form th:action="@{/process}" method="post" th:object="${User}">
+					<div class="form-group">
+						<label for="userName">Enter Name</label> <input type="text"
+							th:value=${User.userName}
+							th:classappend="${#fields.hasErrors('userName')?'is-invalid':''}"
+							name="userName" class="form-control" id="userName">
+						<div class="invalid-feedback"
+							th:each="e : ${#fields.errors('userName')}" th:text="${e}"></div>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">Email address</label> <input
+							type="email" th:value=${User.email} name="email"
+							th:classappend="${#fields.hasErrors('email')?'is-invalid':''}"
+							class="form-control" id="exampleInputEmail1"
+							aria-describedby="emailHelp"> <small
+							th:if="!${#fields.hasErrors('email')}" id="emailHelp"
+							class="form-text text-muted">We'll never share your email
+							with anyone else.</small>
+						<div class="invalid-feedback"
+							th:each="e : ${#fields.errors('email')}" th:text="${e}"></div>
+					</div>
+
+					<div class="form-group form-check">
+						<input type="checkbox" name="agreed" class="form-check-input"
+							th:classappend="${#fields.hasErrors('agreed')?'is-invalid':''}"
+							id="exampleCheck1"> <label class="form-check-label"
+							for="exampleCheck1">Agree TnC</label>
+						<div class="invalid-feedback"
+							th:each="e : ${#fields.errors('agreed')}" th:text="${e}"></div>
+
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
